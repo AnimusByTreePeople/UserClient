@@ -27,11 +27,11 @@ export const signUpUser = async (email, password, name, cashierId) => {
     console.log(userCredentials);
     //createUserFromUID(name, cashierId, userCredentials.user.uid);
   } catch (error) {
-    console.log(error.message);
+    console.log(error.message, "firbase error");
   }
 };
 
-export const signInUser = async (email, password,cashierId) => {
+export const signInUser = async (email, password, cashierId) => {
   try {
     const userCredentials = await signInWithEmailAndPassword(
       auth,
@@ -45,7 +45,7 @@ export const signInUser = async (email, password,cashierId) => {
 
     return user;
   } catch (error) {
-    console.log(error);
+    console.log(error, "firbase error");
   }
 };
 
@@ -60,8 +60,7 @@ export const signOutUser = async (email, password) => {
 export const googleSignIn = async () => {
   try {
     const user = await signInWithPopup(auth, provider);
-    console.log(user)
-    
+    console.log(user);
   } catch (error) {
     console.log(error.message);
   }
