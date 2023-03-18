@@ -11,3 +11,6 @@ body {
   );
   background-attachment: fixed;
 }
+input {
+  color: #ffffff;
+}
