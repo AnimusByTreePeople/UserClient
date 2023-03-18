@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import LeaderBoard from "../components/LeaderBoard";
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
             </NavLink>
           </div>
         </div>
+      </div>
+      <div>
+        <LeaderBoard />
       </div>
       <div>
         <div className="p-2 flex justify-around items-end flex-row text-white bg-slate-800 ">

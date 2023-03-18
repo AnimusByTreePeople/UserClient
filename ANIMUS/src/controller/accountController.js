@@ -25,3 +25,12 @@ export const createUserFromUID = async (name, mobile, uid) => {
   console.log(user);
   return user;
 };
+export const getUsers = async () => {
+  console.log(uid);
+  const response = await fetch(
+    `https://animus-production.up.railway.app/api/accounts/`
+  );
+  const users = await response.json();
+  console.log(users);
+  return users;
+};
