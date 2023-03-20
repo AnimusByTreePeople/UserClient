@@ -17,6 +17,7 @@ const provider = new GoogleAuthProvider();
 
 export const signUpUser = async (email, password, name, cashierId) => {
   try {
+    console.log("debug 1");
     const userCredentials = await createUserWithEmailAndPassword(
       auth,
       email,
