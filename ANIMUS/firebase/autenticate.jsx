@@ -25,7 +25,9 @@ export const signUpUser = async (email, password, name, cashierId) => {
       cashierId
     );
     console.log(userCredentials);
+    console.log("calling createUserWithEmailAndPassword");
     createUserFromUID(name, cashierId, userCredentials.user.uid);
+    console.log("No error");
   } catch (error) {
     console.log(error.message, "firbase error");
   }
