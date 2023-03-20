@@ -24,7 +24,7 @@ export const signUpUser = async (email, password, name, cashierId) => {
       name,
       cashierId
     );
-    console.log(userCredentials);
+    console.log(userCredentials,"Im here");
     console.log("calling createUserWithEmailAndPassword");
     createUserFromUID(name, cashierId, userCredentials.user.uid);
     console.log("No error");
