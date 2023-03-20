@@ -15,7 +15,7 @@ import {
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export const signUpUser = async (email, password, name, cashierId) => {
+export const signUpUser = async (email, password, name, mobile) => {
   try {
     console.log("debug 1");
     const userCredentials = await createUserWithEmailAndPassword(
@@ -23,9 +23,9 @@ export const signUpUser = async (email, password, name, cashierId) => {
       email,
       password,
       name,
-      cashierId
+      mobile
     );
-    console.log(userCredentials,"Im here");
+    console.log(userCredentials, "Im here");
     console.log("calling createUserWithEmailAndPassword");
     createUserFromUID(name, cashierId, userCredentials.user.uid);
     console.log("No error");
@@ -34,13 +34,12 @@ export const signUpUser = async (email, password, name, cashierId) => {
   }
 };
 
-export const signInUser = async (email, password, cashierId) => {
+export const signInUser = async (email, password) => {
   try {
     const userCredentials = await signInWithEmailAndPassword(
       auth,
       email,
-      password,
-      cashierId
+      password
     );
     console.log(userCredentials.user.uid);
 
