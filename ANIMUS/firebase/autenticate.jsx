@@ -27,10 +27,14 @@ export const signUpUser = async (email, password, name, mobile) => {
     );
     console.log(userCredentials, "Im here");
     console.log("calling createUserWithEmailAndPassword");
-    createUserFromUID(name, cashierId, userCredentials.user.uid);
-    console.log("No error");
+    const user = createUserFromUID(name, mobile, userCredentials.user.uid);
+    if (user) {
+      return user;
+    }
+    throw Error("Account not created");
   } catch (error) {
     console.log(error.message, "firbase error");
+    return error;
   }
 };
 
@@ -44,10 +48,14 @@ export const signInUser = async (email, password) => {
     console.log(userCredentials.user.uid);
 
     const user = getUserFromUID(userCredentials.user.uid);
-
-    return user;
+    console.log(user);
+    if (user) {
+      return user;
+    }
+    throw Error("Account not found");
   } catch (error) {
     console.log(error, "firbase error");
+    return error.message;
   }
 };
 
@@ -56,6 +64,7 @@ export const signOutUser = async (email, password) => {
     await signOut(auth);
   } catch (error) {
     console.log(error.message);
+    return error.message;
   }
 };
 
@@ -65,5 +74,6 @@ export const googleSignIn = async () => {
     console.log(user);
   } catch (error) {
     console.log(error.message);
+    return error.message;
   }
 };

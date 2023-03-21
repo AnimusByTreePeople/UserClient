@@ -10,7 +10,6 @@ export const getUserFromUID = async (uid) => {
   return user;
 };
 export const createUserFromUID = async (name, mobile, uid) => {
-  console.log(uid);
   const data = { name, mobile, UID: uid };
   console.log(data);
   const response = await fetch(
