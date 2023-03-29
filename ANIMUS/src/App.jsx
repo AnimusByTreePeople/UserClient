@@ -5,6 +5,8 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import AboutUs from "./Pages/AboutUs";
 import Points from "./Pages/Point";
+import Asset from "./Pages/Asset";
+
 function App(props) {
   return (
     <div className="">
@@ -14,6 +16,7 @@ function App(props) {
         <Route path="signup" element={<SignUp />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="points" element={<Points />} />
+        <Route path="assets" element={<Asset />} />
       </Routes>
     </div>
   );
