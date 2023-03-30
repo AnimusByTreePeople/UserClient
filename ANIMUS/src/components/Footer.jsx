@@ -11,6 +11,9 @@ class Footer extends Component {
         <NavLink to="/points">
           <h1>Points</h1>
         </NavLink>
+        <NavLink to="/assets">
+          <h1>Assets</h1>
+        </NavLink>
       </div>
     );
   }

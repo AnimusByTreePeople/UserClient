@@ -15,7 +15,9 @@ import {
   import axios from "axios";
   import { useState } from "react";
 
-  import "./Asset.css";
+  
+  
+  
   
   const App = () => {
     const [image, updateImage] = useState();
@@ -37,10 +39,11 @@ import {
           <Wrap margin={"100px"}>
             <Input
               value={prompt}
+              placeholder="Enter the prompt "
               onChange={(e) => updatePrompt(e.target.value)}
-              width={"350px"}
+              width={"450px"}
             ></Input>
-            <Button onClick={(e) => generate(prompt)} colorScheme={"yellow"}>
+            <Button onClick={(e) => generate(prompt)} colorScheme={"green"}>
               Generate
             </Button>
           </Wrap>
