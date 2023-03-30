@@ -1,64 +1,38 @@
-import {
-    ChakraProvider,
-    Heading,
-    Container,
-    Text,
-    Input,
-    Button,
-    Wrap,
-    Stack, 
-    Image,
-    Link,
-    SkeletonCircle,
-    SkeletonText,
-  } from "@chakra-ui/react";
-  import axios from "axios";
-  import { useState } from "react";
+import { useState } from "react";
 
-  
-  
-  
-  
-  const App = () => {
-    const [image, updateImage] = useState();
-    const [prompt, updatePrompt] = useState();
-    const [loading, updateLoading] = useState();
-  
-    const generate = async (prompt) => {
-      updateLoading(true);
-      const result = await axios.get(`http://127.0.0.1:8000/?prompt=${prompt}`);
-      updateImage(result.data);
-      updateLoading(false);
-    };
-  
-    return (
-      <ChakraProvider>
-        <Container>
-          
-  
-          <Wrap margin={"100px"}>
-            <Input
-              value={prompt}
-              placeholder="Enter the prompt "
-              onChange={(e) => updatePrompt(e.target.value)}
-              width={"450px"}
-            ></Input>
-            <Button onClick={(e) => generate(prompt)} colorScheme={"green"}>
-              Generate
-            </Button>
-          </Wrap>
-  
-          {loading ? (
-            <Stack>
-              <SkeletonCircle />
-              <SkeletonText />
-            </Stack>
-          ) : image ? (
-            <Image src={`data:image/png;base64,${image}`} boxShadow="lg" />
-          ) : null}
-        </Container>
-      </ChakraProvider>
-    );
+const App = () => {
+  const [image, updateImage] = useState();
+  const [prompt, updatePrompt] = useState("");
+  const [loading, updateLoading] = useState();
+
+  const generate = async (prompt) => {
+    console.log(prompt);
+    updateLoading(true);
+    const result = await fetch(`http://127.0.0.1:8000/?prompt=${prompt}`);
+    updateImage(result.data);
+    console.log(result.data);
+    updateLoading(false);
   };
-  
-  export default App;
+
+  return (
+    <div className="p-4 w-fit ">
+      <div>
+        <input
+          value={prompt}
+          placeholder="Enter the prompt "
+          onChange={(e) => updatePrompt(e.target.value)}
+          className="h-10 p-2"
+        ></input>
+        <button onClick={(e) => generate(prompt)}>Generate</button>
+      </div>
+
+      {loading ? (
+        <div>Image loading...</div>
+      ) : image ? (
+        <image src={`data:image/png;base64,${image}`} boxShadow="lg" />
+      ) : null}
+    </div>
+  );
+};
+
+export default App;
