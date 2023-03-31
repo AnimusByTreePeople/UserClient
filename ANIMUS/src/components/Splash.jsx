@@ -17,6 +17,7 @@ class Splash extends Component {
             </NavLink>
           </div>
         </div>
+        
       </div>
     );
   }
