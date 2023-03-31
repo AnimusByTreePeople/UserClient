@@ -23,7 +23,11 @@ const DashBoard = ({ account, dispatch }) => {
         <div className=" ">
           <button onClick={handleOnLogout}>Logout</button>
         </div>
+
       </div>
+      <NavLink to="/assets">
+        <button >Assets</button>        
+        </NavLink>
     </div>
   );
 };
