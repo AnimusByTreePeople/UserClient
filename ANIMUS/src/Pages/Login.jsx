@@ -8,6 +8,8 @@ import { useAccountContext } from "../hooks/useAccountContext";
 
 export default function SignUp() {
   const { account, dispatch } = useAccountContext();
+  const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,10 +19,14 @@ export default function SignUp() {
     setFormData({ ...formData, [name]: value });
   };
   const handleSignIn = async () => {
-    const user = await signInUser(formData.email, formData.password);
-    console.log(user);
-    if (user) {
-      dispatch({ type: "LOGIN_ACC", payload: user });
+    try {
+      const user = await signInUser(formData.email, formData.password);
+      console.log(user);
+      if (user) {
+        dispatch({ type: "LOGIN_ACC", payload: user });
+      }
+    } catch (e) {
+      setError(e.message);
     }
   };
   if (account) {
@@ -48,6 +54,7 @@ export default function SignUp() {
             value={formData.password}
             onChange={handleFormChange}
           />
+          <h1 className="text-red-600">{error}</h1>
           <button onClick={handleSignIn}>Login</button>
         </div>
       </div>
