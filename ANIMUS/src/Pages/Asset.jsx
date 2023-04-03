@@ -18,7 +18,9 @@ const App = () => {
     setLoading(false);
   };
   const handleShowButton = async () => {
-    const img = await fetch(`http://localhost:4000/api/maps/${account.UID}`);
+    const img = await fetch(
+      `https://animus-production.up.railway.app/api/maps/${account.UID}`
+    );
     const data = await img.json();
     console.log(data.map);
     if (data) {
@@ -32,7 +34,7 @@ const App = () => {
       name: `${Date.now() + account.name}`,
       map: base64,
     };
-    const URL = `http://localhost:4000/api/maps/${account.UID}`;
+    const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
     const img = await fetch(URL);
     const data = await img.json();
     if (data) {
