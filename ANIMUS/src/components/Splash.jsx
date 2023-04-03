@@ -8,7 +8,7 @@ class Splash extends Component {
   render() {
     return (
       <div className="flex flex-col lg:flex-row justify-center min-h-full ">
-        <img className="m-4 lg:w-1/2" src={Logo} alt="logo" />
+        <img className="m-4 w-1/2" src={Logo} alt="logo" />
         <div className="flex flex-col justify-between p-1">
           <div className="flex justify-evenly p-16">
             <NavLink to="/login">

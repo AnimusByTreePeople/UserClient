@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-between max-w-full">
-      <div className="min-h-screen flex justify-center p-4">
+      <div className="min-h-screen min-w-fit flex justify-center p-4">
         {homeView(account)}
       </div>
 

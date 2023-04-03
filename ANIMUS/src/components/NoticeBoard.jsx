@@ -4,7 +4,7 @@ const NoticeBoard = () => {
   const buttonStyle =
     " h-20 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] p-1 m-1 rounded-lg bg-blend-darken ";
   return (
-    <div className="flex flex-col shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-4 m-8 rounded-lg bg-gradient-to-r from-green-800 to-teal-900">
+    <div className="flex flex-col  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-4 m-8 rounded-lg bg-gradient-to-r from-green-800 to-teal-900">
       <div className="p-3 font-lemon">Let's be responsible and have fun!</div>
       <div className="m-2">
         The game will feature a unique reward system that encourages players to
