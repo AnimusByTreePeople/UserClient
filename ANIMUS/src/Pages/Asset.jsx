@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAccountContext } from "../hooks/useAccountContext";
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
 const App = () => {
   const [image, setImage] = useState();
   const [file, setFile] = useState();
@@ -15,7 +15,7 @@ const App = () => {
     console.log(prompt);
     setLoading(true);
     const resultString = prompt + "texture UV map";
-    const result = await fetch(`http://127.0.0.1:8000/?prompt=${resultString}`);
+    const result = await axios(`http://127.0.0.1:8000/?prompt=${resultString}`);
     console.log(result);
     setLoading(false);
   };
