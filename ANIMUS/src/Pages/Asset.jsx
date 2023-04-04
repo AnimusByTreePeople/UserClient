@@ -16,7 +16,6 @@ const App = () => {
     setLoading(true);
     const resultString = prompt + " UV map";
     const result = await fetch(`http://127.0.0.1:8000/?prompt=${resultString}`);
-    const data = await result.json();
     console.log(data);
     setLoading(false);
   };
