@@ -106,13 +106,15 @@ const App = () => {
 
   const selectBaseModel = () => {
     const showSaveButton = () => {
-      image ? (
-        <button className="m-4" onClick={(e) => saveImage(image)}>
-          Save Image
-        </button>
-      ) : (
-        ""
-      );
+      if (image) {
+        return (
+          <button className="m-4" onClick={(e) => saveImage(image)}>
+            Save Image
+          </button>
+        );
+      } else {
+        return <></>;
+      }
     };
     if (baseModel) {
       return (
