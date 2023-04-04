@@ -24,6 +24,8 @@ export default function SignUp() {
       console.log(user);
       if (user) {
         dispatch({ type: "LOGIN_ACC", payload: user });
+      } else {
+        setError("Invalid Credentials");
       }
     } catch (e) {
       setError(e.message);

@@ -25,11 +25,16 @@ export const signUpUser = async (email, password, name, mobile) => {
       name,
       mobile
     );
+    if (!userCredentials) {
+      return null;
+    }
     console.log(userCredentials, "Im here");
     console.log("calling createUserWithEmailAndPassword");
     const user = createUserFromUID(name, mobile, userCredentials.user.uid);
     if (user) {
       return user;
+    } else {
+      return null;
     }
     throw Error("Account not created");
   } catch (error) {
@@ -45,14 +50,18 @@ export const signInUser = async (email, password) => {
       email,
       password
     );
+    if (!userCredentials) {
+      return null;
+    }
     console.log(userCredentials.user.uid);
 
     const user = getUserFromUID(userCredentials.user.uid);
     console.log(user);
     if (user) {
       return user;
+    } else {
+      return null;
     }
-    throw Error("Account not found");
   } catch (error) {
     console.log(error, "firbase error");
     return error.message;

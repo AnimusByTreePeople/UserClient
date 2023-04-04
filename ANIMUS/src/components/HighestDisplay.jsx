@@ -9,7 +9,7 @@ const HighestDisplay = () => {
   useEffect(() => {
     const fetchCount = async () => {
       const response = await fetch(
-        "http://localhost:4000/api/accounts/bagcount"
+        "https://animus-production.up.railway.app/api/accounts/bagcount"
       );
       // `https://animus-production.up.railway.app/api/accounts/bagcount`
       const data = await response.json();
