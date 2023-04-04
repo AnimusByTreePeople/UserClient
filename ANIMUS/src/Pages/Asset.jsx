@@ -25,51 +25,11 @@ const App = () => {
       setLoading(false);
       setImage(base64);
       console.log(base64);
-      const sendJson = {
-        name: `${Date.now() + account.name}`,
-        map: base64,
-      };
-      const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
-      const img = await fetch(URL);
-      const data = await img.json();
-      if (data) {
-        try {
-          await fetch(URL, {
-            method: "PUT",
-            body: JSON.stringify(sendJson),
-            headers: { "Content-Type": "application/json" },
-          });
-        } catch (e) {
-          console.log(e.message);
-        }
-      } else {
-        try {
-          await fetch(URL, {
-            method: "POST",
-            body: JSON.stringify(sendJson),
-            headers: { "Content-Type": "application/json" },
-          });
-        } catch (e) {
-          console.log(e.message);
-        }
-      }
     } catch (e) {
       setError(e.message);
     }
   };
-  const handleShowButton = async () => {
-    const img = await fetch(
-      `https://animus-production.up.railway.app/api/maps/${account.UID}`
-    );
-    const data = await img.json();
-    console.log(data.map);
-    if (data) {
-      setImage(data.map);
-    }
-  };
-  const handleSubmitButton = async () => {
-    console.log(file[0]);
-    const base64 = await convertToBase64(file[0]);
+  const saveImage = async (base64) => {
     const sendJson = {
       name: `${Date.now() + account.name}`,
       map: base64,
@@ -98,6 +58,22 @@ const App = () => {
         console.log(e.message);
       }
     }
+  };
+
+  const handleShowButton = async () => {
+    const img = await fetch(
+      `https://animus-production.up.railway.app/api/maps/${account.UID}`
+    );
+    const data = await img.json();
+    console.log(data.map);
+    if (data) {
+      setImage(data.map);
+    }
+  };
+  const handleSubmitButton = async () => {
+    console.log(file[0]);
+    const base64 = await convertToBase64(file[0]);
+    saveImage(base64);
   };
 
   const uploadImage = () => {
@@ -129,6 +105,15 @@ const App = () => {
   };
 
   const selectBaseModel = () => {
+    const showSaveButton = () => {
+      image ? (
+        <button className="m-4" onClick={(e) => saveImage(image)}>
+          Save Image
+        </button>
+      ) : (
+        ""
+      );
+    };
     if (baseModel) {
       return (
         <div className="flex flex-col py-4">
@@ -148,6 +133,7 @@ const App = () => {
           <button className="m-4" onClick={(e) => generate(prompt)}>
             Generate
           </button>
+          {showSaveButton()}
         </div>
       );
     } else {
