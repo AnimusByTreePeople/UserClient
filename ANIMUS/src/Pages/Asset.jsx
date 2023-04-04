@@ -14,7 +14,7 @@ const App = () => {
   const generate = async (prompt) => {
     console.log(prompt);
     setLoading(true);
-    const resultString = prompt + " UV map";
+    const resultString = prompt + "texture UV map";
     const result = await fetch(`http://127.0.0.1:8000/?prompt=${resultString}`);
     console.log(result);
     setLoading(false);
