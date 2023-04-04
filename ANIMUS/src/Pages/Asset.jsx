@@ -17,7 +17,37 @@ const App = () => {
     const resultString = prompt + "texture UV map";
     const result = await axios(`http://127.0.0.1:8000/?prompt=${resultString}`);
     console.log(result);
+    const base64 = "data:image/png;base64," + result.data;
     setLoading(false);
+    setImages(base64);
+    const sendJson = {
+      name: `${Date.now() + account.name}`,
+      map: base64,
+    };
+    const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
+    const img = await fetch(URL);
+    const data = await img.json();
+    if (data) {
+      try {
+        await fetch(URL, {
+          method: "PUT",
+          body: JSON.stringify(sendJson),
+          headers: { "Content-Type": "application/json" },
+        });
+      } catch (e) {
+        console.log(e.message);
+      }
+    } else {
+      try {
+        await fetch(URL, {
+          method: "POST",
+          body: JSON.stringify(sendJson),
+          headers: { "Content-Type": "application/json" },
+        });
+      } catch (e) {
+        console.log(e.message);
+      }
+    }
   };
   const handleShowButton = async () => {
     const img = await fetch(
@@ -63,7 +93,6 @@ const App = () => {
   };
 
   const uploadImage = () => {
-    console.log("ipload" + upload);
     if (upload) {
       return (
         <div className="flex flex-col py-4">
@@ -92,7 +121,6 @@ const App = () => {
   };
 
   const selectBaseModel = () => {
-    console.log("here" + baseModel);
     if (baseModel) {
       return (
         <div className="flex flex-col py-4">
