@@ -13,8 +13,9 @@ const App = () => {
     console.log(prompt);
     setLoading(true);
     const result = await fetch(`http://127.0.0.1:8000/?prompt=${prompt}`);
+    const data = await result.json();
     setImage(result.data);
-    console.log(result.data);
+    console.log(data);
     setLoading(false);
   };
   const handleShowButton = async () => {
