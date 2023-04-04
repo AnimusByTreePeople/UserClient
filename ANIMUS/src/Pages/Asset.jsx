@@ -23,7 +23,8 @@ const App = () => {
       console.log(result);
       const base64 = "data:image/png;base64," + result.data;
       setLoading(false);
-      setImages(base64);
+      setImage(base64);
+      console.log(base64);
       const sendJson = {
         name: `${Date.now() + account.name}`,
         map: base64,
