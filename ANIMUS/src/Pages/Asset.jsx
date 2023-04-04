@@ -8,6 +8,7 @@ const App = () => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState();
   const [upload, setUpload] = useState(null);
+  const [error, seterror] = useState(null);
   const [baseModel, setBaseModel] = useState(null);
   const { account } = useAccountContext();
 
@@ -15,39 +16,43 @@ const App = () => {
     console.log(prompt);
     setLoading(true);
     const resultString = prompt + "texture UV map";
-    const result = await axios(`http://127.0.0.1:8000/?prompt=${resultString}`);
-    console.log(result);
-    const base64 = "data:image/png;base64," + result.data;
-    setLoading(false);
-    setImages(base64);
-    const sendJson = {
-      name: `${Date.now() + account.name}`,
-      map: base64,
-    };
-    const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
-    const img = await fetch(URL);
-    const data = await img.json();
-    if (data) {
-      try {
-        await fetch(URL, {
-          method: "PUT",
-          body: JSON.stringify(sendJson),
-          headers: { "Content-Type": "application/json" },
-        });
-      } catch (e) {
-        console.log(e.message);
+    try {
+      const result = await axios(
+        `http://127.0.0.1:8000/?prompt=${resultString}`
+      );
+      console.log(result);
+      const base64 = "data:image/png;base64," + result.data;
+      setLoading(false);
+      setImages(base64);
+      const sendJson = {
+        name: `${Date.now() + account.name}`,
+        map: base64,
+      };
+      const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
+      const img = await fetch(URL);
+      const data = await img.json();
+      if (data) {
+        try {
+          await fetch(URL, {
+            method: "PUT",
+            body: JSON.stringify(sendJson),
+            headers: { "Content-Type": "application/json" },
+          });
+        } catch (e) {
+          console.log(e.message);
+        }
+      } else {
+        try {
+          await fetch(URL, {
+            method: "POST",
+            body: JSON.stringify(sendJson),
+            headers: { "Content-Type": "application/json" },
+          });
+        } catch (e) {
+          console.log(e.message);
+        }
       }
-    } else {
-      try {
-        await fetch(URL, {
-          method: "POST",
-          body: JSON.stringify(sendJson),
-          headers: { "Content-Type": "application/json" },
-        });
-      } catch (e) {
-        console.log(e.message);
-      }
-    }
+    } catch (e) {}
   };
   const handleShowButton = async () => {
     const img = await fetch(
@@ -177,6 +182,11 @@ const App = () => {
   } else {
     return (
       <div className="flex flex-col shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-16 m-8 items-center rounded-lg bg-gradient-to-r  from-green-800 to-teal-900 ">
+        <h1 className="text-red-600">
+          {error
+            ? "Error with AI model Please Send us A message through our Social media pages."
+            : ""}
+        </h1>
         {selectBaseModel()}
         {uploadImage()}
         <button className="h-10 p-2 m-4" onClick={handleShowButton}>
