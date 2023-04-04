@@ -8,7 +8,7 @@ const App = () => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState();
   const [upload, setUpload] = useState(null);
-  const [error, seterror] = useState(null);
+  const [error, setError] = useState(null);
   const [baseModel, setBaseModel] = useState(null);
   const { account } = useAccountContext();
 
@@ -53,7 +53,9 @@ const App = () => {
           console.log(e.message);
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      setError(e.message);
+    }
   };
   const handleShowButton = async () => {
     const img = await fetch(
