@@ -16,7 +16,7 @@ const App = () => {
     setLoading(true);
     const resultString = prompt + " UV map";
     const result = await fetch(`http://127.0.0.1:8000/?prompt=${resultString}`);
-    console.log(data);
+    console.log(result);
     setLoading(false);
   };
   const handleShowButton = async () => {
