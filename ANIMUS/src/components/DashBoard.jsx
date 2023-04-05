@@ -16,14 +16,27 @@ const DashBoard = ({ account, dispatch }) => {
       </h1>
       <div className="flex justify-between m-4 p-8 rounded-lg overscroll-none boarder shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] bg-gradient-to-r from-green-800 to-teal-900 ">
         <div className="">
-          <h1>Welcome, {account.name}</h1>
-          <h1>Score: {account.score}</h1>
-          <h1>Leafs: {account.currency}</h1>
+          <h1 className=" font-lemon text-white text-3xl pt-8">
+            Welcome, {account.name}
+          </h1>
+          <h1 className=" font-lemon text-white text-3xl pt-8">
+            Score: {account.score}
+          </h1>
+          <h1 className=" font-lemon text-white text-3xl pt-8">
+            Leafs: {account.currency}
+          </h1>
+          <h1 className="font-lemon text-white text-3xl pt-8">
+            Bags Saved: {account.bagCount}
+          </h1>
         </div>
         <div className=" ">
           <button onClick={handleOnLogout}>Logout</button>
         </div>
       </div>
+      <h1>
+        You can Create or Upload your images here so that your can use it in
+        game!
+      </h1>
       <NavLink to="/assets">
         <button>Assets</button>
       </NavLink>

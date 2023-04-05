@@ -152,6 +152,7 @@ const App = () => {
         <button className="h-10 p-2 m-4" onClick={handleShowButton}>
           Show Image
         </button>
+        <h1>-200 leafs to save an image</h1>
 
         {loading ? (
           <div>Image loading...</div>
