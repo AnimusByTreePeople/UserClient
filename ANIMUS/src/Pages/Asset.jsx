@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAccountContext } from "../hooks/useAccountContext";
 import { NavLink } from "react-router-dom";
+import Logo from "../assets/ANIMUS.svg";
+
 import axios from "axios";
 const App = () => {
   const [image, setImage] = useState();
