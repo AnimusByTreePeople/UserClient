@@ -64,7 +64,7 @@ export const signInUser = async (email, password) => {
     }
   } catch (error) {
     console.log(error, "firbase error");
-    return error.message;
+    return null;
   }
 };
 

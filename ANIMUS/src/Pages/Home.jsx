@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import DashBoard from "../components/DashBoard";
 import Footer from "../components/Footer";
 import LeaderBoard from "../components/LeaderBoard";
+import LeaderBoardBagCount from "../components/LeaderBoardBagCount";
 import Splash from "../components/Splash";
 import { useAccountContext } from "../hooks/useAccountContext";
 
@@ -24,6 +25,7 @@ export default function Home() {
 
       <div className="flex justify-center">
         <LeaderBoard />
+        <LeaderBoardBagCount />
       </div>
 
       <div>

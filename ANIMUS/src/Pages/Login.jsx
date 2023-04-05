@@ -17,6 +17,7 @@ export default function SignUp() {
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setError("");
   };
   const handleSignIn = async () => {
     try {

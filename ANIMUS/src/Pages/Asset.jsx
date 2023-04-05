@@ -28,7 +28,9 @@ const App = () => {
       setImage(base64);
       console.log(base64);
     } catch (e) {
-      setError(e.message);
+      setError(
+        "Error with AI model Please Send us A message through our Social media pages."
+      );
     }
   };
   const handleShowButton = async () => {
@@ -52,9 +54,7 @@ const App = () => {
     if (upload) {
       return (
         <div className="flex flex-col py-4">
-          <h1 className="m-1">
-            Upload your own image below for a "{`${baseModel}`}" Skin
-          </h1>
+          <h1 className="m-1">Upload your own image below for a Skin</h1>
           <input
             type="file"
             name="uploaded_file"
@@ -205,11 +205,7 @@ const App = () => {
           <img className="h-1/5" src={Logo} alt="title" />
         </NavLink>
         <div className="flex flex-col shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-16 m-8 items-center rounded-lg bg-gradient-to-r  from-green-800 to-teal-900 ">
-          <h1 className="text-red-600">
-            {error
-              ? "Error with AI model Please Send us A message through our Social media pages."
-              : ""}
-          </h1>
+          <h1 className="text-red-600">{error ? error : ""}</h1>
           {selectBaseModel()}
           {uploadImage()}
           <button className="h-10 p-2 m-4" onClick={handleShowButton}>
