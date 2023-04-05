@@ -141,24 +141,29 @@ const App = () => {
     );
   } else {
     return (
-      <div className="flex flex-col shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-16 m-8 items-center rounded-lg bg-gradient-to-r  from-green-800 to-teal-900 ">
-        <h1 className="text-red-600">
-          {error
-            ? "Error with AI model Please Send us A message through our Social media pages."
-            : ""}
-        </h1>
-        {selectBaseModel()}
-        {uploadImage()}
-        <button className="h-10 p-2 m-4" onClick={handleShowButton}>
-          Show Image
-        </button>
-        <h1>-200 leafs to save an image</h1>
+      <div>
+        <NavLink to="/">
+          <img className="h-1/5" src={Logo} alt="title" />
+        </NavLink>
+        <div className="flex flex-col shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-16 m-8 items-center rounded-lg bg-gradient-to-r  from-green-800 to-teal-900 ">
+          <h1 className="text-red-600">
+            {error
+              ? "Error with AI model Please Send us A message through our Social media pages."
+              : ""}
+          </h1>
+          {selectBaseModel()}
+          {uploadImage()}
+          <button className="h-10 p-2 m-4" onClick={handleShowButton}>
+            Show Image
+          </button>
+          <h1>-200 leafs to save an image</h1>
 
-        {loading ? (
-          <div>Image loading...</div>
-        ) : image ? (
-          <img src={image} />
-        ) : null}
+          {loading ? (
+            <div>Image loading...</div>
+          ) : image ? (
+            <img src={image} />
+          ) : null}
+        </div>
       </div>
     );
   }
