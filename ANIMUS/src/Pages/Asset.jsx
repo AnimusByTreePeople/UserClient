@@ -44,7 +44,8 @@ const App = () => {
   const handleSubmitButton = async () => {
     console.log(file[0]);
     const base64 = await convertToBase64(file[0]);
-    saveImage(base64);
+    saveImage(base64, account);
+    setFile(null);
   };
 
   const uploadImage = () => {
@@ -79,7 +80,7 @@ const App = () => {
     const showSaveButton = () => {
       if (image) {
         return (
-          <button className="m-4" onClick={(e) => saveImage(image)}>
+          <button className="m-4" onClick={(e) => saveImage(image, account)}>
             Save Image
           </button>
         );
@@ -185,11 +186,12 @@ function convertToBase64(file) {
     };
   });
 }
-const saveImage = async (base64) => {
+const saveImage = async (base64, account) => {
   if (account.currency < 200) {
     setError(
       "Not enough leafs, Take your reusable bags to the supermarket and give them the mobile number for your account!"
     );
+    return;
   }
   const sendJson = {
     name: `${Date.now() + account.name}`,
@@ -233,4 +235,9 @@ const saveImage = async (base64) => {
       console.log(e.message);
     }
   }
+  alert(
+    `Image uploaded successfully,you have ${
+      account.currency - 200
+    } leaves left `
+  );
 };

@@ -26,7 +26,7 @@ const DashBoard = ({ account, dispatch }) => {
             Leafs: {account.currency}
           </h1>
           <h1 className="font-lemon text-white text-3xl pt-8">
-            Bags Saved: {account.bagCount}
+            Bags replaced: {account.bagCount}
           </h1>
         </div>
         <div className=" ">
