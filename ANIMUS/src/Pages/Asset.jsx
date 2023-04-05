@@ -29,37 +29,6 @@ const App = () => {
       setError(e.message);
     }
   };
-  const saveImage = async (base64) => {
-    const sendJson = {
-      name: `${Date.now() + account.name}`,
-      map: base64,
-    };
-    const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
-    const img = await fetch(URL);
-    const data = await img.json();
-    if (data) {
-      try {
-        await fetch(URL, {
-          method: "PUT",
-          body: JSON.stringify(sendJson),
-          headers: { "Content-Type": "application/json" },
-        });
-      } catch (e) {
-        console.log(e.message);
-      }
-    } else {
-      try {
-        await fetch(URL, {
-          method: "POST",
-          body: JSON.stringify(sendJson),
-          headers: { "Content-Type": "application/json" },
-        });
-      } catch (e) {
-        console.log(e.message);
-      }
-    }
-  };
-
   const handleShowButton = async () => {
     const img = await fetch(
       `https://animus-production.up.railway.app/api/maps/${account.UID}`
@@ -208,3 +177,47 @@ function convertToBase64(file) {
     };
   });
 }
+const saveImage = async (base64) => {
+  const sendJson = {
+    name: `${Date.now() + account.name}`,
+    map: base64,
+  };
+  const URL = `https://animus-production.up.railway.app/api/maps/${account.UID}`;
+  const accURL = `https://animus-production.up.railway.app/api/accounts/${account.UID}`;
+  //reduce currency
+  const reducedCurrency = {
+    currency: account.currency - 200,
+  };
+  try {
+    await fetch(accURL, {
+      method: "PUT",
+      body: JSON.stringify(reducedCurrency),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+  const img = await fetch(URL);
+  const data = await img.json();
+  if (data) {
+    try {
+      await fetch(URL, {
+        method: "PUT",
+        body: JSON.stringify(sendJson),
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  } else {
+    try {
+      await fetch(URL, {
+        method: "POST",
+        body: JSON.stringify(sendJson),
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+};
