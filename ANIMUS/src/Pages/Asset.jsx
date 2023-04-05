@@ -186,6 +186,11 @@ function convertToBase64(file) {
   });
 }
 const saveImage = async (base64) => {
+  if (account.currency < 200) {
+    setError(
+      "Not enough leafs, Take your reusable bags to the supermarket and give them the mobile number for your account!"
+    );
+  }
   const sendJson = {
     name: `${Date.now() + account.name}`,
     map: base64,

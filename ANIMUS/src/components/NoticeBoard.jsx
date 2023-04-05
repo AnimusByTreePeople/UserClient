@@ -9,16 +9,16 @@ const NoticeBoard = () => {
       <div className="m-2">
         The game will feature a unique reward system that encourages players to
         adopt sustainable habits in real life. One of the ways players can earn
-        rewards is by using reusable bags when shopping.These rewards will be
-        designed to educate players on the importance of reducing waste and help
-        them understand how small changes in their daily lives can make a big
-        impact on the environment. The game will also give players the option to
-        share their progress on social media, encouraging friends and family to
-        join in and make a difference together.
+        leafs(animus currency) is by using reusable bags when shopping.These
+        rewards will be designed to educate players on the importance of
+        reducing waste and help them understand how small changes in their daily
+        lives can make a big impact on the environment. The game will also give
+        players the option to share their progress on social media, encouraging
+        friends and family to join in and make a difference together.
       </div>
       <div className="flex space-between">
         <NavLink to="/points">
-          <button className={buttonStyle}>How to get Points</button>
+          <button className={buttonStyle}>How to Earn Leafs</button>
         </NavLink>
 
         <NavLink to="https://www.facebook.com/profile.php?id=100090422421731">

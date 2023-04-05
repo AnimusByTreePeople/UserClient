@@ -3,28 +3,9 @@ import "./AboutUs.css";
 
 export default function AboutUs() {
   return (
-    <div>
+    <div className="flex flex-col shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] p-4 m-8 rounded-lg bg-gradient-to-r lg:w-1/2  from-green-800 to-teal-900 ">
       <h1>About Us</h1>
-      <div className="flex flex-row justify-around">
-        <div>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-        </div>
-        <div>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-        </div>
-        <div>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-          <h1>Suraj</h1>
-        </div>
-      </div>
+
       <br />
       <ol>
         <li>
